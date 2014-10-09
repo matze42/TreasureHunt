@@ -1,16 +1,14 @@
-package person.view
+package samples
 
-import scalafx.scene.text.Text
+import person.model.Person
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.geometry.Insets
 import scalafx.scene.Scene
-import scalafx.scene.layout.{AnchorPane, HBox, BorderPane}
+import scalafx.scene.control.{Label, SplitPane, TableColumn, TableView}
+import scalafx.scene.layout.{AnchorPane, BorderPane}
 import scalafx.scene.paint.Color._
-import scalafx.scene.control.{TableView, TableColumn, SplitPane, Label}
-
-import person.model.Person
 
 
 object PersonOverview extends JFXApp {
