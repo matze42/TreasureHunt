@@ -12,7 +12,7 @@ class Person$Test extends FunSuite {
        Person.addPerson(new Person("Beckenstiel", "Andrea"))
 
        for (p<- Person.persons) {
-         println("Person: "+p)
+         println("Person: "+p.lastName.value+" "+p.firstName.value+" "+p.birthday.value)
        }
        assert(true == true)
      }

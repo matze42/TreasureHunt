@@ -9,7 +9,10 @@ I like to use this project to update my programming skills.
 Planned technologies:
 
 * Core: Scala/Akka
-* Rich Client: ScalaFX / ScalaFXML
+* Persistence: TODO: Not decided yet
+* Rich Client: ScalaFX / ScalaFXML / Scala
 * Web Client: HTML5 with Play
+* Build System: SBT
+* Unit Tests: ScalaTest
 
 To get there I first need to explore the respective technologies.
