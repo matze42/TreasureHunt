@@ -1,33 +1,13 @@
-# Markdown Überschrift Ebene 1
+# Treasure Hunt
 
-Normaler Text  
-mit Umbrüchen. 
+In the end I like to implement a game of treasure hunting that can be played with multiple players (like a MUD).
+I plan to implement a core that represents the game world and that runs independently from the players.
 
-Hier geht es weiter.
+Multiple clients (Rich Client implemented in JavaFX 8 and web clients implemented in Play) shall be able to connect and play.
+I like to use this project to update my programming skills.
 
+Planned technologies:
 
-* Einrükunh
-* noch eine Einrückung
-* Doppel Einrückung
-    * Mit vier Leerzeichen
-    * Mit vier Leerzeichen
-    
-1. Nummerierung
-2. Weiterführung
-    3. Mit vier Leerzeichen
-    4. Hier geht es weiter
-5. wieder zurück
-
-## Ü-Schrift Ebene 2
-
-Normaler text geht dann hier weiter
-
-> Zitate
-> gehne in einer weitern Zeile weiter
-> und immer weiter
-
-
-> Jetzt zitate mit unterzitaten
->> Unterzitat
->> untrzitat zeile 2
-> Originalzitat
+* Core: Scala/Akka
+* Rich Client: ScalaFX / ScalaFXML
+* Web Client: HTML5 with Play
