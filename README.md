@@ -11,3 +11,5 @@ Planned technologies:
 * Core: Scala/Akka
 * Rich Client: ScalaFX / ScalaFXML
 * Web Client: HTML5 with Play
+
+To get there I first need to explore the respective technologies.
