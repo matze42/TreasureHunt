@@ -30,6 +30,8 @@ object PersonApp extends JFXApp {
   }
 
   def showPersonOverview() = {
+
+ // Dialogs.create().owner(stage.).title("Titel des Dialogs").masthead("masthead ....").message("Dies ist die Message!").showError()
   bp.setCenter(personOverview)
   }
 }

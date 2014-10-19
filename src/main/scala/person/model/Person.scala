@@ -6,6 +6,7 @@ import scala.collection.mutable
 import scalafx.beans.property.{ObjectProperty, IntegerProperty, StringProperty}
 import scalafx.collections.ObservableBuffer
 
+
 class Person(
               val lastName_ : String,
               val firstName_ : String,
@@ -29,8 +30,8 @@ object Person {
 
   def getTeamMembers: ObservableBuffer[Person] = {
     val teamMembers = new ObservableBuffer[Person]()
-    for (i <- 1 to 1000) {
-      teamMembers += new Person("FirstName" + i, "LastName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, 2, 21))
+    for (i <- 1 to 100) {
+      teamMembers += new Person("LastName" + i, "FirstName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, 2, 21))
     }
     teamMembers
   }

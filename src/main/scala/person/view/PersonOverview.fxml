@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="person.presenter.PersonOverviewPresenter">
+<AnchorPane prefHeight="542.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="person.presenter.PersonOverviewPresenter">
     <children>
         <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -56,7 +56,7 @@
                             <children>
                                 <Button layoutX="105.0" layoutY="477.0" mnemonicParsing="false" text="New..." />
                                 <Button layoutX="175.0" layoutY="477.0" mnemonicParsing="false" text="Edit..." />
-                                <Button layoutX="255.0" layoutY="477.0" mnemonicParsing="false" text="Delete" />
+                                <Button layoutX="255.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
                             </children>
                         </HBox>
                     </children>

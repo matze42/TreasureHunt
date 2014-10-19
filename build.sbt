@@ -11,3 +11,5 @@ libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.0-R4"
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)
 
 libraryDependencies += "org.scalafx" %% "scalafxml-core" % "0.2.1"
+
+libraryDependencies += "org.controlsfx" % "controlsfx" % "8.20.7"
