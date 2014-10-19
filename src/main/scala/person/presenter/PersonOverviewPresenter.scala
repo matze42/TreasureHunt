@@ -1,12 +1,14 @@
 package person.presenter
 
+import java.time.LocalDate
 import java.util.Optional
 import javafx.scene.control.Alert.AlertType
 
 import person.model.Person
 import person.util.DateUtil
+import person.PersonApp
 
-import scalafx.application.Platform
+import scalafx.application.{JFXApp, Platform}
 import scalafx.event.ActionEvent
 import scalafx.scene.control.{TableColumn, TableView, Label}
 
@@ -28,6 +30,7 @@ class PersonOverviewPresenter(
                                private val cityLabel: Label,
                                private val postalCodeLabel: Label,
                                private val birthdayLabel: Label) {
+
 
 
   println("Hello from Constructor of PersonOverviewPresenter")
@@ -63,6 +66,8 @@ class PersonOverviewPresenter(
     }
   }
 
+
+
   def handleDeletePerson(): Unit = {
 
     val personToDelete = personTable.selectionModel().getSelectedItem()
@@ -74,6 +79,14 @@ class PersonOverviewPresenter(
       //TODO: Vernünftige REferenz zum Modell aufbauen
       persons.-=(personToDelete)
       personTable.getSelectionModel.clearSelection()
+    }
+  }
+
+  def handleNewPerson(): Unit ={
+    val tempPerson: Person = new Person("", "", "", 0, "", LocalDate.now)
+    val okClicked: Boolean = PersonApp.showPersonEditDialog(tempPerson)
+    if (okClicked) {
+
     }
   }
 }

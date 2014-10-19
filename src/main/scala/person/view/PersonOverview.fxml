@@ -54,7 +54,7 @@
                         <Label layoutX="14.0" layoutY="6.0" text="Person Details:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                         <HBox layoutX="189.0" layoutY="504.0" spacing="10.0">
                             <children>
-                                <Button layoutX="105.0" layoutY="477.0" mnemonicParsing="false" text="New..." />
+                                <Button layoutX="105.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleNewPerson" text="New..." />
                                 <Button layoutX="175.0" layoutY="477.0" mnemonicParsing="false" text="Edit..." />
                                 <Button layoutX="255.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
                             </children>
