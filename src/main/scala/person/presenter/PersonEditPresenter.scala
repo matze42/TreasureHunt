@@ -1,21 +1,21 @@
 package person.presenter
 
 import java.time.LocalDate
-import java.util.Optional
+import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
 
 import person.model.Person
 import person.util.DateUtil
 
-import scalafx.scene.control.{TextField}
+import scalafx.scene.control.TextField
 import scalafx.stage.Stage
 import scalafxml.core.macros.sfxml
 
-import javafx.scene.control.{ButtonType, Alert}
-import javafx.scene.control.Alert.AlertType
-
 trait PersonEditInterface {
   def setDialogStage(dialogStage: Stage): Unit
-  def isOkClicked():Boolean
+
+  def isOkClicked: Boolean
+
   def setPerson(p: Person): Unit
 }
 
@@ -27,9 +27,9 @@ class PersonEditPresenter(
                            private val cityField: TextField,
                            private val postalCodeField: TextField,
                            private val birthdayField: TextField)
-extends PersonEditInterface {
+  extends PersonEditInterface {
 
-  var dialogStage: Stage = null
+  var dialogStage: Stage = _
   var okClicked: Boolean = false
 
   private var person: Person = new Person("", "", "", 0, "", LocalDate.now)
@@ -38,9 +38,7 @@ extends PersonEditInterface {
     this.dialogStage = dialogStage
   }
 
-  def isOkClicked(): Boolean = {
-    return okClicked
-  }
+  def isOkClicked: Boolean = okClicked
 
   def setPerson(p: Person) = {
     this.person = p
@@ -57,12 +55,12 @@ extends PersonEditInterface {
   }
 
   def handleOK(): Unit = {
-    if (isInputValid()) {
-      person.firstName.set(firstNameField.getText())
+    if (isInputValid) {
+      person.firstName.set(firstNameField.getText)
       person.lastName.set(lastNameField.getText)
-      person.street.set(streetField.getText())
+      person.street.set(streetField.getText)
       person.postalCode.set(postalCodeField.getText.toInt)
-      person.city.set(cityField.getText())
+      person.city.set(cityField.getText)
       person.birthday.set(DateUtil.parse(birthdayField.getText))
 
       okClicked = true
@@ -74,9 +72,9 @@ extends PersonEditInterface {
     dialogStage.close()
   }
 
-  private def isInputValid(): Boolean = {
+  private def isInputValid: Boolean = {
     var errorMessage: String = ""
-    if (firstNameField.getText == null || firstNameField.getText().length == 0) {
+    if (firstNameField.getText == null || firstNameField.getText.length == 0) {
       errorMessage = errorMessage + "No valid first name!\n"
     }
 
@@ -84,7 +82,7 @@ extends PersonEditInterface {
 
     if (errorMessage.length != 0) {
       val alertDialog = new Alert(AlertType.ERROR, "Invalid Fields! Please correct invalid fields.")
-      val response: Optional[ButtonType] = alertDialog.showAndWait()
+      alertDialog.showAndWait()
     }
     errorMessage.length == 0
   }

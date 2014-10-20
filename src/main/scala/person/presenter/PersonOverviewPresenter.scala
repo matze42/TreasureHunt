@@ -3,21 +3,15 @@ package person.presenter
 import java.time.LocalDate
 import java.util.Optional
 import javafx.scene.control.Alert.AlertType
+import javafx.scene.control.{Alert, ButtonType}
 
+import person.PersonApp
 import person.model.Person
 import person.util.DateUtil
-import person.PersonApp
 
-import scalafx.application.{JFXApp, Platform}
-import scalafx.event.ActionEvent
-import scalafx.scene.control.{TableColumn, TableView, Label}
-
-import scalafxml.core.macros.sfxml
 import scalafx.Includes._
-
-import javafx.scene.control.{ButtonType, Alert}
-
-import javafx.beans.binding.StringBinding
+import scalafx.scene.control.{Label, TableColumn, TableView}
+import scalafxml.core.macros.sfxml
 
 @sfxml
 class PersonOverviewPresenter(
@@ -32,7 +26,6 @@ class PersonOverviewPresenter(
                                private val birthdayLabel: Label) {
 
 
-
   println("Hello from Constructor of PersonOverviewPresenter")
   firstNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.firstName}
   lastNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.lastName}
@@ -45,7 +38,6 @@ class PersonOverviewPresenter(
   personTable.selectionModel().selectedItem.onChange((_, _, newValue) => {
     showPersonDetails(newValue)
   })
-
 
 
   def showPersonDetails(p: Person) = {
@@ -67,11 +59,10 @@ class PersonOverviewPresenter(
   }
 
 
-
   def handleDeletePerson(): Unit = {
 
-    val personToDelete = personTable.selectionModel().getSelectedItem()
-    val alertDialog = new Alert(AlertType.CONFIRMATION, "Are you sure that you want to delete "+personToDelete.firstName.value +" "+personToDelete.lastName.value+"?")
+    val personToDelete = personTable.selectionModel().getSelectedItem
+    val alertDialog = new Alert(AlertType.CONFIRMATION, "Are you sure that you want to delete " + personToDelete.firstName.value + " " + personToDelete.lastName.value + "?")
 
     val response: Optional[ButtonType] = alertDialog.showAndWait()
     if (response.get() == ButtonType.OK) {
@@ -82,7 +73,7 @@ class PersonOverviewPresenter(
     }
   }
 
-  def handleNewPerson(): Unit ={
+  def handleNewPerson(): Unit = {
     val tempPerson: Person = new Person("", "", "", 0, "", LocalDate.now)
     val okClicked: Boolean = PersonApp.showPersonEditDialog(tempPerson)
     if (okClicked) {

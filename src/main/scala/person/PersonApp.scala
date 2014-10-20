@@ -1,17 +1,15 @@
 package person
 
-import person.model.Person
-import person.presenter.{PersonOverviewPresenter, PersonEditInterface}
+import javafx.{scene => jfxs}
 
-import scala.reflect.runtime.universe.typeOf
+import person.model.Person
+import person.presenter.PersonEditInterface
+
+import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.scene.Scene
-import scalafx.scene.layout.BorderPane
 import scalafx.stage.{Modality, Stage}
-
-import scalafxml.core.{DependenciesByType, FXMLView, FXMLLoader, NoDependencyResolver}
-import scalafx.Includes._
-import javafx.{scene => jfxs}
+import scalafxml.core.{FXMLLoader, FXMLView, NoDependencyResolver}
 
 object PersonApp extends JFXApp {
 
@@ -61,12 +59,12 @@ object PersonApp extends JFXApp {
     dialogStage.initOwner(stage)
     dialogStage.scene = new Scene(personEditDialog)
 
-    val controller = loader.getController[PersonEditInterface]
+    val controller = loader.getController[PersonEditInterface]()
     controller.setDialogStage(dialogStage)
     controller.setPerson(person)
     dialogStage.showAndWait()
 
-    controller.isOkClicked()
+    controller.isOkClicked
 
   }
 }
