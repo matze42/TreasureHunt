@@ -35,6 +35,7 @@ class PersonOverviewPresenter(
   personTable.items = persons
 
   showPersonDetails(null)
+
   personTable.selectionModel().selectedItem.onChange((_, _, newValue) => {
     showPersonDetails(newValue)
   })
@@ -77,7 +78,17 @@ class PersonOverviewPresenter(
     val tempPerson: Person = new Person("", "", "", 0, "", LocalDate.now)
     val okClicked: Boolean = PersonApp.showPersonEditDialog(tempPerson)
     if (okClicked) {
+      persons.+=(tempPerson)
+    }
+  }
 
+  def handleEditPerson(): Unit = {
+    val personToEdit = personTable.selectionModel().getSelectedItem
+    if (personToEdit != null) {
+      val okClicked: Boolean = PersonApp.showPersonEditDialog(personToEdit)
+      if (okClicked) {
+        showPersonDetails(personToEdit)
+      }
     }
   }
 }

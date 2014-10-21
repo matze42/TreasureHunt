@@ -28,13 +28,7 @@ object PersonApp extends JFXApp {
 //  val personOverviewPresenter = personOverviewLoader.getController[PersonOverviewPresenter]
 
 
-  // val personEditDialog = FXMLView(getClass.getResource("view/PersonEditDialog.fxml"), NoDependencyResolver)
- // Instead of FXMLView, we create a new ScalaFXML loader
-  val loader = new FXMLLoader(getClass.getResource("view/PersonEditDialog.fxml"), NoDependencyResolver)
-  // Load the FXML, the controller will be instantiated
-  loader.load()
-   // Get the scene root
-  val personEditDialog = loader.getRoot[jfxs.Parent]
+
 
   stage = new JFXApp.PrimaryStage() {
     title = "Person Overview"
@@ -52,18 +46,28 @@ object PersonApp extends JFXApp {
   }
 
   def showPersonEditDialog(person: Person): Boolean = {
-    //TODO Stürtz ab beim zweiten aufruf
+    //TODO fxml mus jedesmal geladen werden, damit nicht beimzweiten Aufruf exception mit blahbla ist already root of another element
+    // evtl. optimieren und geladenes fxml wiederverwenden.
+
+    // val personEditDialog = FXMLView(getClass.getResource("view/PersonEditDialog.fxml"), NoDependencyResolver)
+    // Instead of FXMLView, we create a new ScalaFXML loader
+    val loader = new FXMLLoader(getClass.getResource("view/PersonEditDialog.fxml"), NoDependencyResolver)
+    // Load the FXML, the controller will be instantiated
+    loader.load()
+    // Get the scene root
+    val personEditDialog = loader.getRoot[jfxs.Parent]
+
     val dialogStage: Stage = new Stage()
     dialogStage.title = "Edit Person"
     dialogStage.initModality(Modality.WINDOW_MODAL)
     dialogStage.initOwner(stage)
+
     dialogStage.scene = new Scene(personEditDialog)
 
     val controller = loader.getController[PersonEditInterface]()
     controller.setDialogStage(dialogStage)
     controller.setPerson(person)
     dialogStage.showAndWait()
-
     controller.isOkClicked
 
   }
