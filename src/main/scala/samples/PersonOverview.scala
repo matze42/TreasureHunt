@@ -1,6 +1,6 @@
 package samples
 
-import person.model.Person
+import person.model.{PersonsStorage, Person}
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -30,8 +30,9 @@ object PersonOverview extends JFXApp {
   }
 
   val leftSplitPane = new BorderPane {
-    center = new TableView[Person](Person.getTeamMembers) {
-      columns +=(firstNameColumn, lastNameColumn)
+//    center = new TableView[Person](Person.getTeamMembers) {
+      center = new TableView[Person](PersonsStorage.persons ) {
+        columns +=(firstNameColumn, lastNameColumn)
 
 
     }

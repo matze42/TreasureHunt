@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.{Alert, ButtonType}
 
 import person.PersonApp
-import person.model.Person
+import person.model.{Person, PersonsStorage}
 import person.util.DateUtil
 
 import scalafx.Includes._
@@ -29,9 +29,7 @@ class PersonOverviewPresenter(
   firstNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.firstName}
   lastNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.lastName}
 
-  //TODO: Vernünftige REferenz zum Modell aufbauen
-  var persons = Person.getTeamMembers
-  personTable.items = persons
+  personTable.items = PersonsStorage.persons
 
   showPersonDetails(null)
 
@@ -66,9 +64,7 @@ class PersonOverviewPresenter(
 
     val response: Optional[ButtonType] = alertDialog.showAndWait()
     if (response.get() == ButtonType.OK) {
-
-      //TODO: Vernünftige REferenz zum Modell aufbauen
-      persons.-=(personToDelete)
+      PersonsStorage.deletePerson(personToDelete)
       personTable.getSelectionModel.clearSelection()
     }
   }
@@ -77,7 +73,8 @@ class PersonOverviewPresenter(
     val tempPerson: Person = new Person("", "", "", 0, "", LocalDate.now)
     val okClicked: Boolean = PersonApp.showPersonEditDialog(tempPerson)
     if (okClicked) {
-      persons.+=(tempPerson)
+      //      persons.+=(tempPerson)
+      PersonsStorage.addPerson(tempPerson)
     }
   }
 

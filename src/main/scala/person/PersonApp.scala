@@ -2,7 +2,9 @@ package person
 
 import javafx.{scene => jfxs}
 
-import person.model.Person
+import com.typesafe.scalalogging.Logger
+import org.slf4j.LoggerFactory
+import person.model.{PersonsStorage, Person}
 import person.presenter.{BirthdayStatisticsInterface, PersonEditInterface}
 
 import scalafx.Includes._
@@ -12,20 +14,21 @@ import scalafx.stage.{Modality, Stage}
 import scalafxml.core.{FXMLLoader, FXMLView, NoDependencyResolver}
 
 object PersonApp extends JFXApp {
-
+  val logger = Logger(LoggerFactory.getLogger(getClass.getSimpleName) )
+  logger.info("Welcome to Person App")
   val rootLayout = FXMLView(getClass.getResource("view/RootLayout.fxml"), NoDependencyResolver)
 
   // TODO: Very clumsy. need to find a better way to access setCenter
   val bp = rootLayout.asInstanceOf[javafx.scene.layout.BorderPane]
 
-     val personOverview = FXMLView(getClass.getResource("view/PersonOverview.fxml"), NoDependencyResolver)
+  val personOverview = FXMLView(getClass.getResource("view/PersonOverview.fxml"), NoDependencyResolver)
 
-//  val personOverviewLoader = new FXMLLoader(getClass.getResource("view/PersonOverview.fxml"), NoDependencyResolver)
-//  // Load the FXML, the controller will be instantiated
-//  personOverviewLoader.load()
-//  // Get the scene root
-//  val personOverview = personOverviewLoader.getRoot[jfxs.Parent]
-//  val personOverviewPresenter = personOverviewLoader.getController[PersonOverviewPresenter]
+  //  val personOverviewLoader = new FXMLLoader(getClass.getResource("view/PersonOverview.fxml"), NoDependencyResolver)
+  //  // Load the FXML, the controller will be instantiated
+  //  personOverviewLoader.load()
+  //  // Get the scene root
+  //  val personOverview = personOverviewLoader.getRoot[jfxs.Parent]
+  //  val personOverviewPresenter = personOverviewLoader.getController[PersonOverviewPresenter]
 
 
 
@@ -87,8 +90,7 @@ object PersonApp extends JFXApp {
     dialogStage.scene = new Scene(birthdayStatisticsDialog)
 
     val controller = loader.getController[BirthdayStatisticsInterface]()
-//   controller.setPersonData( Person.persons.toList )
-    controller.setPersonData( Person.persons.toList )
+    controller.setPersonData(PersonsStorage.persons.toList)
     dialogStage.show()
 
   }
