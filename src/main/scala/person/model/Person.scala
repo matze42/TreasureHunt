@@ -3,6 +3,7 @@ package person.model
 import java.time.LocalDate
 
 import scala.collection.mutable
+import scala.util.Random
 import scalafx.beans.property.{ObjectProperty, IntegerProperty, StringProperty}
 import scalafx.collections.ObservableBuffer
 
@@ -31,7 +32,7 @@ object Person {
   def getTeamMembers: ObservableBuffer[Person] = {
     val teamMembers = new ObservableBuffer[Person]()
     for (i <- 1 to 100) {
-      val p = new Person("LastName" + i, "FirstName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, 2, 21))
+      val p = new Person("LastName" + i, "FirstName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, Random.nextInt(12)+1, 21))
       teamMembers += p
       addPerson(p)
     }

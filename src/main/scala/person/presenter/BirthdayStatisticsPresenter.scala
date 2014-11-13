@@ -28,9 +28,10 @@ class BirthdayStatisticsPresenter(
   monthNames ++= months.toList
   xAxis.setCategories(monthNames)
 
+
   def setPersonData(persons: List[Person]) = {
     val monthCounter = new Array[Integer](12)
-    for (i <- 0 to 11) {
+    for (i <- 0 until monthCounter.length) {
       monthCounter(i) = 0
     }
 
@@ -39,12 +40,13 @@ class BirthdayStatisticsPresenter(
       monthCounter(month) = monthCounter(month) + 1
     }
     val series = new XYChart.Series[String, Integer]
-    for (i <- 0 to monthCounter.length - 1) {
+    for (i <- 0 until monthCounter.length ) {
       series.data() += XYChart.Data[String, Integer](monthNames.get(i), monthCounter(i))
     }
 
-    val content = new ObservableBuffer[XYChart.Series[String, Integer]]()
-    content.addAll(series)
+//    val content = new ObservableBuffer[XYChart.Series[String, Integer]]()
+//    content.addAll(series)
+    barChart.getData.addAll(series)
 
   }
 }
