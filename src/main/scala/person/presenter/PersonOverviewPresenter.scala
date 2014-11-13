@@ -26,7 +26,6 @@ class PersonOverviewPresenter(
                                private val birthdayLabel: Label) {
 
 
-  println("Hello from Constructor of PersonOverviewPresenter")
   firstNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.firstName}
   lastNameColumn.cellValueFactory = { e: TableColumn.CellDataFeatures[Person, String] => e.getValue.lastName}
 
@@ -48,7 +47,7 @@ class PersonOverviewPresenter(
       streetLabel.text = p.street.value
       cityLabel.text = p.city.value
       postalCodeLabel.text = p.postalCode.value.toString
-      birthdayLabel.text = DateUtil.format(p.birthday.value)
+      birthdayLabel.text = DateUtil.format(p.birthday.value).getOrElse("<<ERROR>>")
     } else {
       lastNameLabel.text = ""
       firstNameLabel.text = ""

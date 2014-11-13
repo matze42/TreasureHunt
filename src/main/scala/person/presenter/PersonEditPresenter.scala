@@ -49,7 +49,7 @@ class PersonEditPresenter(
     streetField.setText(person.street.value)
     cityField.setText(person.city.value)
     postalCodeField.setText(person.postalCode.value.toString)
-    birthdayField.setText(DateUtil.format(person.birthday.value))
+    birthdayField.setText(DateUtil.format(person.birthday.value).getOrElse("<<ERROR>>"))
     birthdayField.setPromptText("dd.mm.yyyy")
 
   }
