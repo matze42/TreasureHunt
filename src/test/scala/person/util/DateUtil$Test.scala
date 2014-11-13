@@ -23,17 +23,17 @@ class DateUtil$Test extends FunSuite {
   }
 
   test("parse ") {
-    assert(DateUtil.parse("14.04.1990") === LocalDate.of(1990, 4, 14))
+    assert(DateUtil.parse("14.04.1990").get === LocalDate.of(1990, 4, 14))
   }
 
   test("parse with invalid date string") {
-    assert(DateUtil.parse("wurstsalat") === null)
+    assert(DateUtil.parse("wurstsalat").isEmpty )
   }
 
   test("parse with valid date strings") {
-    assert(DateUtil.parse("14.04.1990") === LocalDate.of(1990, 4, 14))
-    assert(DateUtil.parse("12.10.2014") === LocalDate.of(2014, 10, 12))
-    assert(DateUtil.parse("01.01.2000") === LocalDate.of(2000, 1, 1))
+    assert(DateUtil.parse("14.04.1990").get === LocalDate.of(1990, 4, 14))
+    assert(DateUtil.parse("12.10.2014").get === LocalDate.of(2014, 10, 12))
+    assert(DateUtil.parse("01.01.2000").get === LocalDate.of(2000, 1, 1))
   }
 
   test("Valid date") {

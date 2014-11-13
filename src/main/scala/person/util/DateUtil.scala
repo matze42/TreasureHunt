@@ -13,22 +13,18 @@ object DateUtil {
     if (d == null) null else DATE_FORMATTER.format(d)
   }
 
-  def parse(dateString: String): LocalDate = {
-    //TODO Find better approach without var
-    var localDate: LocalDate = null
-    try {
-     localDate = LocalDate.parse(dateString, DATE_FORMATTER)
+  def parse(dateString: String): Option[LocalDate] = {
+   try {
+      Some(LocalDate.parse(dateString, DATE_FORMATTER))
     }
-    catch
-      {
-        case e : DateTimeParseException => localDate = null
-        case e: Exception => throw  e
-      }
-    localDate
-  }
+    catch {
+      case e: DateTimeParseException => None
+      case e: Exception => throw e
+    }
+   }
 
   def validDate(dateString: String): Boolean = {
-    DateUtil.parse(dateString) != null
+    DateUtil.parse(dateString).isDefined
   }
 
 }

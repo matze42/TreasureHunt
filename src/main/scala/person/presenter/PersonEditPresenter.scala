@@ -61,7 +61,7 @@ class PersonEditPresenter(
       person.street.set(streetField.getText)
       person.postalCode.set(postalCodeField.getText.toInt)
       person.city.set(cityField.getText)
-      person.birthday.set(DateUtil.parse(birthdayField.getText))
+      person.birthday.set(DateUtil.parse(birthdayField.getText).get)
 
       okClicked = true
       dialogStage.close()
