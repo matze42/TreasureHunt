@@ -31,7 +31,9 @@ object Person {
   def getTeamMembers: ObservableBuffer[Person] = {
     val teamMembers = new ObservableBuffer[Person]()
     for (i <- 1 to 100) {
-      teamMembers += new Person("LastName" + i, "FirstName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, 2, 21))
+      val p = new Person("LastName" + i, "FirstName" + i, "Street " + i, 59111, "Some City", LocalDate.of(1999, 2, 21))
+      teamMembers += p
+      addPerson(p)
     }
     teamMembers
   }

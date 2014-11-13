@@ -3,7 +3,7 @@ package person
 import javafx.{scene => jfxs}
 
 import person.model.Person
-import person.presenter.PersonEditInterface
+import person.presenter.{BirthdayStatisticsInterface, PersonEditInterface}
 
 import scalafx.Includes._
 import scalafx.application.JFXApp
@@ -69,6 +69,27 @@ object PersonApp extends JFXApp {
     controller.setPerson(person)
     dialogStage.showAndWait()
     controller.isOkClicked
+
+  }
+
+  def showBirthdayStatistics() = {
+    val loader = new FXMLLoader(getClass.getResource("view/BirthdayStatistics.fxml"), NoDependencyResolver)
+    // Load the FXML, the controller will be instantiated
+    loader.load()
+    // Get the scene root
+    val birthdayStatisticsDialog = loader.getRoot[jfxs.Parent]
+
+    val dialogStage: Stage = new Stage()
+    dialogStage.title = "Birthday Statistics Title"
+    dialogStage.initModality(Modality.WINDOW_MODAL)
+    dialogStage.initOwner(stage)
+
+    dialogStage.scene = new Scene(birthdayStatisticsDialog)
+
+    val controller = loader.getController[BirthdayStatisticsInterface]()
+//   controller.setPersonData( Person.persons.toList )
+    controller.setPersonData( Person.persons.toList )
+    dialogStage.show()
 
   }
 }
